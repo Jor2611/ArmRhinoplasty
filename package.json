@@ -1,0 +1,22 @@
+{
+  "name": "medic",
+  "version": "1.0.0",
+  "description": "Medical Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "engines": {
+    "node":"10.15.1",
+    "npm":"6.4.1"
+  },
+  "keywords": [
+    "Medic"
+  ],
+  "author": "Jora Khachatryan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
