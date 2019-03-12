@@ -4,7 +4,9 @@ body {
   color: #167ce9;
   font-weight: 400;
   font-size: 1rem;
-  background: #fff; }
+  background: #fff; 
+  overflow-x: hidden;
+}
 
 ::-moz-selection {
   background:  #fff;
@@ -105,11 +107,11 @@ h1, h2, h3, h4, h5,
   border-bottom: 2px solid gray;
   border-radius: 0;
   background: none;
-  color: #fff;
+  color: black;
   padding-left: 0;
   padding-right: 0; }
   .form-control:active, .form-control:focus {
-    color: #fff;
+    color: black;
     background: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -592,6 +594,7 @@ h1, h2, h3, h4, h5,
     .header-bar {
       width: 100%;
       position: relative;
+      overflow: hidden;
       float: none;
       height: 70px !important;
       min-height: 70px; } }
@@ -659,7 +662,7 @@ h1, h2, h3, h4, h5,
     @media (max-width: 991.98px) {
       .main-content .container-fluid {
         padding-left: 15px;
-        padding-right: 15px; } }
+        padding-right:15px; } }
   .main-content .photos .photo-item {
     position: relative; }
     .main-content .photos .photo-item:after {
@@ -727,6 +730,8 @@ h1, h2, h3, h4, h5,
 }    
 .col-panels {
   margin-bottom:20px;
+  border:1px solid #53a1b6;
+  border-radius: 5px;
 }
 
 

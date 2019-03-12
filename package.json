@@ -8,8 +8,8 @@
     "start": "node index"
   },
   "engines": {
-    "node":"10.15.1",
-    "npm":"6.4.1"
+    "node": "10.15.1",
+    "npm": "6.4.1"
   },
   "keywords": [
     "Medic"
@@ -17,6 +17,11 @@
   "author": "Jora Khachatryan",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.19"
   }
 }
