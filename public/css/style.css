@@ -6,6 +6,8 @@ body {
   font-size: 1rem;
   background: #fff; 
   overflow-x: hidden;
+  overflow-y: scroll !important;
+  position: relative;
 }
 
 ::-moz-selection {
