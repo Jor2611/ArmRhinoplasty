@@ -14,7 +14,11 @@
         <li {{#if active_offical}} class="active" {{/if}}><a href="/officalJournal">Official Journal</a></li>
         <li {{#if active_surg}} class="active" {{/if}}><a href="/findSurgeon">Find a Surgeon</a></li>
         <li {{#if active_link}} class="active" {{/if}}><a href="/links">Links</a></li>
-        <li {{#if active_sign}} class="active" {{/if}}><a href data-toggle="modal" data-target="#loginModal">SignIn</a></li>
+        {{#if toggle}}
+            <li ><a href="/auth/signOut" id="signOut">Sign Out</a></li>
+        {{else}}
+            <li {{#if active_sign}} class="active" {{/if}}><a href data-toggle="modal" data-target="#loginModal">SignIn</a></li>            
+        {{/if}}
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>

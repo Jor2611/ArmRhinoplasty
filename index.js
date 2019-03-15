@@ -3,29 +3,38 @@ const path = require("path");
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
-
+const conf = require("./config/env");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+require("./config/db");
+const auth = require("./routes/auth");
 
 let app = express();
-let port = process.env.PORT || 3000;
+
 
 
 app.use(express.static(path.join(__dirname,"public")));
 app.use(cookieParser());
 app.use(session({
-    secret: 'keyboard cat',
+    secret: conf.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
   }))
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 app.engine('handlebars', exphbs({defaultLayout: 'index'}));
 app.set('view engine', 'handlebars');
 app.get('/',(req,res)=>{
     res.redirect('/home');
 });
 app.get('/home',(req,res)=>{
-    res.render('home',{active_home:true});
+    if(req.cookies.id_cook){
+        res.render('home',{active_home:true,toggle:true});
+    }else{
+        res.render('home',{active_home:true,toggle:false});
+    }  
 });
 app.get('/about',(req,res)=>{
     res.render('about',{active_about:true});
@@ -46,10 +55,15 @@ app.get('/officalJournal',(req,res)=>{
     res.render('journal',{active_offical:true});
 });
 app.get('/register',(req,res)=>{
-    res.render('register',{active_sign:true});
+    if(!req.cookies.id_cook){
+        res.render('register',{active_sign:true});
+    }else{
+        res.redirect('/');        
+    }
 });
 
+app.use("/auth",auth);
 
-app.listen(port,()=>{
-    console.log(`Server running on port ${port}`);
+app.listen(conf.PORT,()=>{
+    console.log(`Server running on port ${conf.PORT}`);
 });
