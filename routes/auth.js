@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const config = require("../config/env");
 const nodemailer = require("nodemailer");
-
+const mailtemplate = require("./mail");
 router.post("/register", (req, res, next) => {
   let newUser = new User({
     first_name: req.body.firstName,
@@ -42,14 +42,17 @@ router.post("/register", (req, res, next) => {
                     pass: config.ACCOUNT_PASS
                   }
                 });
+                // let link =
+                //   "http://medicin.herokuapp.com/auth/Email_Verification=true?token=" +
+                //   doc.activation_Token;
                 let link =
                   "http://medicin.herokuapp.com/auth/Email_Verification=true?token=" +
                   doc.activation_Token;
                 let mailOptions = {
-                  from: '"ArmRhinoplasty"<Rhinoplastyarm@gmail.com>', // sender address
+                  from: '"Rhinoplasty Society" <rhinoplastyarm@gmail.com>', // sender address
                   to: req.body.email, // list of receivers
                   subject: "Account Activation", // Subject line
-                  html: `For activating your account please follow this link <a href="${link}">Activate My Account</a>`
+                  html: mailtemplate(link, "Activate Account", doc.first_name)
                 };
                 transporter.sendMail(mailOptions, (errors, info) => {
                   if (errors) {
