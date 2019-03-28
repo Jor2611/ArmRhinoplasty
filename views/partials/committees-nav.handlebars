@@ -1,0 +1,34 @@
+<ul class="nav justify-content-center mb-3 mt-3" data-aos="fade-in" data-aos-delay="200">
+    <li class="nav-item">
+        <a {{#if active_member}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees">Membership</a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_educ}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/education">Education</a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_web}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/website">Website</a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_nominate}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/nominating">
+            Nominating </a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_eth}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/ethical">
+            Ethical </a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_sp}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/strategic-planning">
+            Strategic Planning </a>
+    </li>
+    <li class="nav-item">
+        <a {{#if active_research}} class="nav-link disabled" {{else}} class="nav-link" {{/if}}
+            href="/about/commitees/research">
+            Research </a>
+    </li>
+</ul>

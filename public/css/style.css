@@ -995,19 +995,77 @@ h5,
   opacity: 1;
   visibility: visible;
 }
-
+/* Home */
+.home-div {
+  margin-top: 10px;
+}
+.media-body > p {
+  color: black;
+}
+/* End Home */
 .jumbotron {
   background-image: url("/images/doc.jpg");
   background-size: cover;
   height: 40%;
   border-bottom: 5px solid #167ce9;
 }
+
 .col-panels {
+  /* border-bottom: 1px solid #167ce9;
+  border-left: 1px solid #167ce9; */
   margin-bottom: 30px;
 }
 .col-panels > p {
   color: black;
 }
+/* About-history */
+.about-div > .row {
+  margin-top: 15px;
+}
+.history-date {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.history-det > p {
+  color: black;
+}
+.mission-det > p {
+  color: black;
+}
+.back-link {
+  border-right: 2px solid #167ce9;
+  border-bottom: 2px solid #167ce9;
+  border-bottom-right-radius: 5px;
+  padding-right: 10px;
+}
+.article-header {
+  font-weight: bold;
+}
+article > p,
+.article-list > li {
+  color: black;
+  margin: 0px;
+}
+.article-sub-header {
+  color: black;
+  font-weight: bold;
+  margin: 0px;
+}
+/* END About-history */
+/* About-Members */
+.member-det > ul {
+  border: 1px solid gray;
+}
+.member-det > ul > li {
+  color: black;
+}
+/* END About-Members */
+
+/* Message */
+.message-det > p {
+  color: black;
+}
+/* END Message */
 
 .site-mobile-menu .site-mobile-menu-body ul:first-child {
   margin-bottom: 20px !important;

@@ -38,15 +38,12 @@ app.get("/home", (req, res) => {
   }
 });
 app.use("/about", about);
-// app.get('/about',(req,res)=>{
-//     res.render('about',{active_about:true});
-// });
-// app.get('/about',(req,res)=>{
-//     res.render('about',{active_about:true});
-// });
-// app.get('/about',(req,res)=>{
-//     res.render('about',{active_about:true});
-// });
+app.get("/president-message", (req, res) => {
+  res.render("president-message", { active_home: true });
+});
+app.get("/imrhis", (req, res) => {
+  res.render("imrhis", { active_home: true });
+});
 app.get("/findSurgeon", (req, res) => {
   res.render("surgeon", { active_surg: true });
 });
