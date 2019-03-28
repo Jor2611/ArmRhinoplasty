@@ -51,7 +51,9 @@ app.get("/findSurgeon", (req, res) => {
 app.get("/meetings", (req, res) => {
   res.render("meeting", { active_meet: true });
 });
-
+app.get("/events", (req, res) => {
+  res.render("events", { active_event: true });
+});
 app.get("/links", (req, res) => {
   res.render("links", { active_link: true });
 });

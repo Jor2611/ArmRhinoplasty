@@ -3,7 +3,12 @@
     {{>jumbotron}}
 
     <div class="container about-div" data-aos="fade-in" data-aos-delay="100">
-        <a href="/about" class="ml-3 back-link">&larr; Back to About Us</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/about">ABOUT US</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Committees</li>
+            </ol>
+        </nav>
         {{> committees-nav}}
 
         <h3 class="mb-3 ml-3">Membership Committee</h3>

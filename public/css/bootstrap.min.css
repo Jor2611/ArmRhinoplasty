@@ -3863,7 +3863,8 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #e9ecef;
+  background: -webkit-linear-gradient(100deg, #167ce9 50%, #79efb4 100%);
+  background: -o-linear;
   border-radius: 0.25rem; }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -3881,7 +3882,7 @@ input[type="button"].btn-block {
   text-decoration: none; }
 
 .breadcrumb-item.active {
-  color: #6c757d; }
+  color: #fff; }
 
 .pagination {
   display: -webkit-box;

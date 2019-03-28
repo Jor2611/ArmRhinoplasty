@@ -818,6 +818,8 @@ h5,
   overflow: auto;
   background: -webkit-linear-gradient(45deg, #167ce9 0%, #79efb4 100%);
   background: -o-linear;
+  background: -webkit-linear-gradient(45deg, #167ce9 0%, #79efb4 100%);
+  background: -o-linear;
   padding: 30px;
   text-align: right;
   position: fixed;
