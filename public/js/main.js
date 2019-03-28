@@ -265,7 +265,23 @@ jQuery(document).ready(function($) {
     });
   };
   siteCountDown();
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 500) {
+      $(".scroll-top").fadeIn();
+    } else {
+      $(".scroll-top").fadeOut();
+    }
+  });
 
+  $(".scroll-top").click(function() {
+    $("html, body").animate(
+      {
+        scrollTop: 0
+      },
+      100
+    );
+    return false;
+  });
   var siteDatePicker = function() {
     if ($(".datepicker").length > 0) {
       $(".datepicker").datepicker();

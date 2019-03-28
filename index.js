@@ -9,7 +9,7 @@ const cors = require("cors");
 require("./config/db");
 const auth = require("./routes/auth");
 const about = require("./routes/about");
-
+const rhinoplasty = require("./routes/rhinoplasty");
 let app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -38,6 +38,7 @@ app.get("/home", (req, res) => {
   }
 });
 app.use("/about", about);
+app.use("/rhinoplasty", rhinoplasty);
 app.get("/president-message", (req, res) => {
   res.render("president-message", { active_home: true });
 });
@@ -50,9 +51,7 @@ app.get("/findSurgeon", (req, res) => {
 app.get("/meetings", (req, res) => {
   res.render("meeting", { active_meet: true });
 });
-app.get("/rhinoplasty", (req, res) => {
-  res.render("rhinoplasty", { active_rhin: true });
-});
+
 app.get("/links", (req, res) => {
   res.render("links", { active_link: true });
 });
