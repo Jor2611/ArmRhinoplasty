@@ -1,32 +1,141 @@
- {{>header}}
- <main class="main-content">
-     <div class="container">
-        <h1>SignUp</h1>
-            <form action="#" id="signUpForm" class="needs-validation" novalidate>
-                <div class="form-group control-group">
-                    <label for="first-name ">First Name:</label>
-                    <input type="text" name="firstName" class="form-control" id="first-name" required="true">
-                </div>
-                <div class="form-group control-group">
-                    <label for="last-name">Last Name:</label>
-                    <input type="text" name="lastName" class="form-control" id="last-name" required="true">
-                </div>
-              <div class="form-group control-group">
-                <label for="email">Email address:</label>
-                <input type="email" name="_email" class="form-control" id="email" required="true">
-              </div>
-              <div class="form-group control-group">
-                <label for="pwd">Password:</label>
-                <input type="password" name="_password" class="form-control" id="pwd" required="true">
-              </div>
-              <div class="form-group control-group">
-                  <label for="confirm">Confirm Password:</label>
-                  <input type="password" name="_confirm" class="form-control" id="confirm" required="true">
-                </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-    {{> footer}}
-    </div>
+{{>header}}
+<main class="main-content">
+  <div class="container ml-2">
+    <h1>SignUp</h1>
+    <form action="#" id="signUpForm" class="needs-validation" novalidate>
+      <div class="row">
+        <div class="form-group col-sm-6 control-group">
+          <label for="first-name">First Name:</label>
+          <input type="text" name="firstName" class="form-control" id="first-name" required="true">
+        </div>
+        <div class="form-group col-sm-6 control-group">
+          <label for="last-name">Last Name:</label>
+          <input type="text" name="lastName" class="form-control" id="last-name" required="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group control-group col-sm-4 mt-2 ">
+          <label for="datepicker">Date of birth:</label><br>
+          <input id="datepicker" name="dob" class="form-control" placeholder="MM/DD/YYYY" />
+        </div>
+        <div class="form-group control-group col-sm-4 mt-2 ">
+          <label>Country:</label>
+          <br>
+          <input type="text" name="_nationality" class="form-control" id="country">
+        </div>
+        <div class="form-group control-group col-sm-4 mt-2">
+          <label for="sel1">Academic Degree:</label>
+          <select class="form-control" name="academic_degree" id="sel1">
+            <option name="degree1" value="1">Bachelor</option>
+            <option name="degree2" value="2">Master</option>
+            <option name="degree3" value="3">Doctorate</option>
+            <option name="degree4" value="4">Professorship</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group control-group">
+        <label for="discipline">Occupation & Discipline:</label>
+        <input type="text" name="_discipline" class="form-control" id="discipline" required="true">
+      </div>
 
- </main>
- 
+      <div class="row">
+        <div class="form-group col-sm-4 control-group">
+          <label for="phone">Phone:</label>
+          <input type="text" name="_phone" class="input-medium form-control bfh-phone" id="phone"
+            data-format="+ddddddddddddddd">
+        </div>
+        <div class="form-group col-sm-4 control-group">
+          <label for="mobile">Mobile Phone:</label>
+          <input type="text" name="m_phone" class="input-medium form-control bfh-phone" id="mobile"
+            data-format="+ddddddddddddddd">
+        </div>
+        <div class="form-group col-sm-4 control-group">
+          <label for="fax">Fax:</label>
+          <input type="text" name="_fax" class="input-medium form-control bfh-phone" id="fax"
+            data-format="+ddddddddddddddd">
+        </div>
+      </div>
+      <div class="form-group control-group">
+        <label for="business">Business address:</label>
+        <input type="text" name="bus_address" class="form-control" id="business" required="true">
+      </div>
+      <div class="form-group control-group">
+        <label for="email">Email address:</label>
+        <input type="email" name="_email" class="form-control" id="email" required="true">
+      </div>
+      <div class="form-group control-group">
+        <label for="private">Private Address:</label>
+        <input type="text" name="p_address" class="form-control" id="private" required="true">
+      </div>
+      <div class="row" id="pass-group">
+        <div class="form-group col-sm-6 mb-3 mt-3 control-group pwd_group">
+          <label for="pwd">Password:</label>
+          <div class="input-group">
+            <input type="password" name="_password" data-toggle="password" class="form-control" id="pwd"
+              required="true">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-eye"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 mb-3 mt-3 control-group confirm_group">
+          <label for="confirm">Confirm Password:</label>
+          <div class="input-group">
+            <input type="password" name="_confirm" class="form-control" id="confirm" required="true"
+              data-toggle="password">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-eye"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-5 mt-3">
+          <label for="">Practice Details</label>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_practice" name="_practice" value="university">University /
+              Institute</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_practice" name="_practice" value="private">Private
+              Practice</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_practice" name="_practice" value="resident">Resident</label>
+          </div>
+        </div>
+        <div class="col-sm-5 mt-3">
+          <label for="">Member of which national society?</label>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_member" name="_member" value="plastic">Plastic Surgery</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_member" name="_member" value="ent">ENT</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="checkbox_member" name="_member" value="oral">Oral and Maxillofacial
+              Surgery</label>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <br>
+      <div class="checkbox">
+        <label for="agree">
+          <input type="checkbox" name="_agree" id="agree" value="true" required="true">
+          I agree with the objectives and guidelines of the society</label>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <hr>
+    </form>
+    {{> footer}}
+  </div>
+
+</main>

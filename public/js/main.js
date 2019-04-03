@@ -288,4 +288,20 @@ jQuery(document).ready(function($) {
     }
   };
   siteDatePicker();
+
+  $("#datepicker").datepicker({});
+  $("#country").countrySelect({
+    preferredCountries: ["am"],
+    responsiveDropdown: true
+  });
+  $(".checkbox_practice").click(function() {
+    $(".checkbox_practice")
+      .not(this)
+      .prop("checked", false);
+  });
+  $(".checkbox_member").click(function() {
+    $(".checkbox_member")
+      .not(this)
+      .prop("checked", false);
+  });
 });

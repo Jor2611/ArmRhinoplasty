@@ -5,14 +5,28 @@ const User = require("../models/User");
 const config = require("../config/env");
 const nodemailer = require("nodemailer");
 const mailtemplate = require("./mail");
+
 router.post("/register", (req, res, next) => {
   let newUser = new User({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
     email: req.body.email,
+    date_of_birth: req.body.date_of_birth,
+    country: req.body.nationality,
+    degree: req.body.academic_degree,
+    occupation_discipline: req.body.occupation_discipline,
+    phone: req.body.phone,
+    mobile_phone: req.body.mobile_phone,
+    fax: req.body.fax,
+    business_address: req.body.business_address,
+    private_address: req.body.private_address,
+    practice_details: req.body.practice_details,
+    member_type: req.body.member_type,
+    isAgree: req.body.agreement,
     password: req.body.password
   });
-  if (req.body.confirm === newUser.password) {
+
+  if (req.body.confirm === newUser.password && newUser.isAgree === true) {
     User.getUserByEmail(newUser.email, (err, match) => {
       if (err) return res.json({ success: false, msg: "Error: " + err });
       else if (!match) {
