@@ -6,6 +6,16 @@ const config = require("../config/env");
 const nodemailer = require("nodemailer");
 const mailtemplate = require("./mail");
 
+//Transporter Configuration
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: config.ACCOUNT_NAME,
+    pass: config.ACCOUNT_PASS
+  }
+});
+
+//Registration Route
 router.post("/register", (req, res, next) => {
   let newUser = new User({
     first_name: req.body.firstName,
@@ -49,16 +59,6 @@ router.post("/register", (req, res, next) => {
               if (bad)
                 return res.json({ success: false, msg: "Error: " + bad });
               else {
-                let transporter = nodemailer.createTransport({
-                  service: "Gmail",
-                  auth: {
-                    user: config.ACCOUNT_NAME,
-                    pass: config.ACCOUNT_PASS
-                  }
-                });
-                // let link =
-                //   "http://medicin.herokuapp.com/auth/Email_Verification=true?token=" +
-                //   doc.activation_Token;
                 let link =
                   "http://medicin.herokuapp.com/auth/Email_Verification=true?token=" +
                   doc.activation_Token;
@@ -66,7 +66,11 @@ router.post("/register", (req, res, next) => {
                   from: '"Rhinoplasty Society" <rhinoplastyarm@gmail.com>', // sender address
                   to: req.body.email, // list of receivers
                   subject: "Account Activation", // Subject line
-                  html: mailtemplate(link, "Activate Account", doc.first_name)
+                  html: mailtemplate.activation(
+                    link,
+                    "Activate Account",
+                    doc.first_name
+                  )
                 };
                 transporter.sendMail(mailOptions, (errors, info) => {
                   if (errors) {
@@ -93,6 +97,7 @@ router.post("/register", (req, res, next) => {
   }
 });
 
+//Authentication Route
 router.post("/authenticate", (req, res) => {
   let email = req.body.email;
   let password = req.body.dassword;
@@ -127,6 +132,7 @@ router.post("/authenticate", (req, res) => {
   });
 });
 
+//Email Verification Route
 router.get("/Email_Verification=true", (req, res) => {
   let activation_Token = req.query.token;
   User.findOneAndUpdate(
@@ -140,6 +146,102 @@ router.get("/Email_Verification=true", (req, res) => {
   );
 });
 
+//Password resetting section
+router.post("/forgetPassword", (req, res) => {
+  let email = req.body.email;
+  if (email !== "" && email !== undefined && email !== null) {
+    User.findOne({ email }, (err, doc) => {
+      if (err) return res.json({ success: false, msg: "Error: " + err });
+      else if (!doc)
+        return res.json({ success: false, msg: "Cannot find user" });
+      else {
+        let token = jwt.sign({ email: doc.email }, config.RESET_JWT_SECRET, {
+          expiresIn: 904
+        });
+        let link =
+          "http://medicin.herokuapp.com/auth/resetPassword?token=" + token;
+        let mailOptions = {
+          from: '"Rhinoplasty Society" <rhinoplastyarm@gmail.com>', // sender address
+          to: email, // list of receivers
+          subject: "Reset Password", // Subject line
+          html: mailtemplate.reset(
+            link,
+            "Reset Password",
+            doc.first_name,
+            doc.email
+          )
+        };
+        transporter.sendMail(mailOptions, (errors, info) => {
+          if (errors) {
+            return console.log(errors);
+          }
+          console.log("Message %s sent: %s", info.messageId, info.response);
+          res.status(201).json({ success: true, msg: "Good Very good" });
+        });
+      }
+    });
+  } else {
+    res.status(403).json({ success: false, msg: "Please insert valid email" });
+  }
+});
+
+router.get("/resetPassword", (req, res) => {
+  let token = req.query.token;
+  jwt.verify(token, config.RESET_JWT_SECRET, (err, data) => {
+    if (err) res.redirect("/");
+    else {
+      User.findOne({ email: data.email }, (error, success) => {
+        if (error) return res.json({ success: false, msg: "Error:" + error });
+        else if (!success)
+          return res.json({ success: false, msg: "Cannot get user link" });
+        else {
+          let url = `/auth/resetPassword?token=${success.activation_Token}`;
+          res.render("resetPassword", { url });
+        }
+      });
+    }
+  });
+});
+
+router.post("/resetPassword", (req, res) => {
+  let token = req.query.token;
+  let { forgot_password, forgot_confirm } = req.body;
+  if (forgot_confirm === forgot_password) {
+    User.changePassword(token, forgot_password, (err, success) => {
+      if (err) {
+        let mailOptions = {
+          from: '"Rhinoplasty Society" <rhinoplastyarm@gmail.com>', // sender address
+          to: success.email, // list of receivers
+          subject: "Password recovery", // Subject line
+          html: mailtemplate.error(success.first_name, success.email)
+        };
+        transporter.sendMail(mailOptions, (errors, info) => {
+          if (errors) {
+            return console.log(errors);
+          }
+          console.log("Message %s sent: %s", info.messageId, info.response);
+          res.redirect("/");
+        });
+      } else {
+        let mailOptions = {
+          from: '"Rhinoplasty Society" <rhinoplastyarm@gmail.com>', // sender address
+          to: success.email, // list of receivers
+          subject: "Password recovery", // Subject line
+          html: mailtemplate.success(success.first_name, success.email)
+        };
+        transporter.sendMail(mailOptions, (errors, info) => {
+          if (errors) {
+            return console.log(errors);
+          }
+          console.log("Message %s sent: %s", info.messageId, info.response);
+          res.redirect("/");
+        });
+      }
+    });
+  }
+});
+
+//Sign Out Route
 router.get("/signOut", (req, res) => {
   res.clearCookie("id_cook");
   res.redirect("/");

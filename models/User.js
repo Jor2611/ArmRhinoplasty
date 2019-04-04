@@ -96,7 +96,7 @@ module.exports.changePassword = async (token, pass, cb) => {
     let salt = await bcrypt.genSaltSync(10);
     let password_hash = await bcrypt.hashSync(pass, salt);
     User.findOneAndUpdate(
-      { activation_Token: toen },
+      { activation_Token: token },
       { password: password_hash },
       cb
     );
