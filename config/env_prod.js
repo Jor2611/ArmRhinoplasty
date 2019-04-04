@@ -4,5 +4,6 @@ module.exports = {
   SESSION_SECRET: process.env.SESSION_SECRET,
   PORT: process.env.PORT,
   ACCOUNT_NAME: process.env.ACCOUNT_NAME,
-  ACCOUNT_PASS: process.env.ACCOUNT_PASS
+  ACCOUNT_PASS: process.env.ACCOUNT_PASS,
+  RESET_JWT_SECRET: process.env.RESET_JWT_SECRET
 };
